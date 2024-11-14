@@ -5,20 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TrendSpy</title>
   <link rel="icon" href="favicon.ico">
-  <!-- React -->
-  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-  <!-- Babel -->
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <!-- Lucide Icons -->
-  <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
-  <!-- Tailwind -->
-  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
   <div id="root"></div>
 
-  <script type="text/babel">
+  <script type="text/javascript">
     const { useState, useEffect } = React;
     const { ArrowRight, Star, Sparkles, LineChart, Globe, Moon, Search, BarChart2 } = Lucide;
 
@@ -47,101 +38,57 @@
       ];
 
       return (
-        <div className="min-h-screen" style={{ background: `linear-gradient(to bottom, ${colors.dark}, #0F1235)` }}>
-          {/* Background elements */}
-          <div className="fixed inset-0 overflow-hidden pointer-events-none">
-            <div 
-              className="absolute top-0 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-20"
-              style={{ background: `linear-gradient(45deg, ${colors.primary}, ${colors.accent})` }}
-            />
-            <div 
-              className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full blur-3xl opacity-20"
-              style={{ background: `linear-gradient(45deg, ${colors.accent}, ${colors.cyan})` }}
-            />
+        <div style={{ minHeight: '100vh', background: `linear-gradient(to bottom, ${colors.dark}, #0F1235)` }}>
+          {/* Inline the background elements */}
+          <div style={{ position: 'fixed', inset: '0', overflow: 'hidden', 'pointerEvents': 'none' }}>
+            <div style={{ position: 'absolute', top: '25%', left: '25%', width: '24rem', height: '24rem', borderRadius: '50%', filter: 'blur(48px)', opacity: '0.2', background: `linear-gradient(45deg, ${colors.primary}, ${colors.accent})` }}></div>
+            <div style={{ position: 'absolute', bottom: '25%', right: '25%', width: '24rem', height: '24rem', borderRadius: '50%', filter: 'blur(48px)', opacity: '0.2', background: `linear-gradient(45deg, ${colors.accent}, ${colors.cyan})` }}></div>
           </div>
 
-          {/* Navigation */}
-          <nav 
-            className={`fixed w-full z-50 transition-all duration-500 ${
-              isScrolled ? 'bg-opacity-80 backdrop-blur-lg border-b border-white/10' : ''
-            }`}
-            style={{ backgroundColor: isScrolled ? colors.dark : 'transparent' }}
-          >
-            <div className="max-w-6xl mx-auto px-8">
-              <div className="flex items-center justify-between h-20">
-                <div className="flex items-center space-x-3">
-                  <img 
-                    src="logo.png"
-                    alt="TrendSpy Logo" 
-                    className="w-10 h-10 object-contain"
-                  />
-                  <span className="text-xl font-light text-white tracking-wider">TRENDSPY</span>
-                </div>
-
-                <div className="flex items-center space-x-8">
-                  {navLinks.map((link, index) => (
-                    
-                      key={index}
-                      href={link.href}
-                      className="text-white/80 hover:text-white transition-colors duration-200"
-                    >
-                      {link.text}
-                    </a>
-                  ))}
-                  <button 
-                    className="px-6 py-3 rounded-full text-white transition-all duration-300 hover:shadow-lg"
-                    style={{ 
-                      background: `linear-gradient(45deg, ${colors.primary}, ${colors.accent})`,
-                      boxShadow: `0 4px 20px ${colors.primary}40`
-                    }}
-                  >
-                    Sign In
-                  </button>
-                </div>
+          {/* Inline the navigation */}
+          <nav style={{ position: 'fixed', width: '100%', zIndex: '50', transition: 'all 0.5s', backgroundColor: isScrolled ? colors.dark : 'transparent' }}>
+            <div style={{ maxWidth: '1536px', margin: '0 auto', padding: '2rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '5rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', 'spaceX': '0.75rem' }}>
+                <img src="logo.png" alt="TrendSpy Logo" style={{ width: '2.5rem', height: '2.5rem', objectFit: 'contain' }} />
+                <span style={{ fontSize: '1.25rem', fontWeight: '300', color: 'white', letterSpacing: 'wider' }}>TRENDSPY</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', 'spaceX': '2rem' }}>
+                {navLinks.map((link, index) => (
+                  <a key={index} href={link.href} style={{ color: 'rgba(255, 255, 255, 0.8)', transition: 'color 0.2s', ':hover': { color: 'white' } }}>
+                    {link.text}
+                  </a>
+                ))}
+                <button style={{ padding: '0.75rem 1.5rem', borderRadius: '9999px', color: 'white', transition: 'all 0.3s', background: `linear-gradient(45deg, ${colors.primary}, ${colors.accent})`, boxShadow: `0 4px 20px ${colors.primary}40` }}>
+                  Sign In
+                </button>
               </div>
             </div>
           </nav>
 
           {/* Hero Section */}
-          <div className="pt-40 pb-24 relative">
-            <div className="max-w-6xl mx-auto px-8">
-              <div className="max-w-3xl relative">
-                <div className="mb-2 flex items-center space-x-2">
-                  <Star className="w-5 h-5" style={{ color: colors.accent }} />
-                  <span style={{ color: colors.accent }} className="text-sm tracking-wider font-medium">
-                    ANALYZE • PREDICT • TRANSFORM
-                  </span>
+          <div style={{ paddingTop: '10rem', paddingBottom: '6rem', position: 'relative' }}>
+            <div style={{ maxWidth: '1536px', margin: '0 auto', padding: '2rem' }}>
+              <div style={{ maxWidth: '48rem', position: 'relative' }}>
+                <div style={{ marginBottom: '0.5rem', display: 'flex', alignItems: 'center', 'spaceX': '0.5rem' }}>
+                  <Star style={{ width: '1.25rem', height: '1.25rem', color: colors.accent }} />
+                  <span style={{ color: colors.accent, fontSize: '0.875rem', fontWeight: 'medium', letterSpacing: 'wider' }}>ANALYZE • PREDICT • TRANSFORM</span>
                 </div>
-                <h1 className="text-6xl font-light mb-6 text-white leading-tight">
+                <h1 style={{ fontSize: '3.75rem', fontWeight: '300', color: 'white', lineHeight: '1.25' }}>
                   Uncover Tomorrow's{' '}
-                  <span className="block mt-2" style={{ 
-                    background: `linear-gradient(to right, ${colors.primary}, ${colors.accent})`,
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent'
-                  }}>
+                  <span style={{ display: 'block', marginTop: '0.5rem', background: `linear-gradient(to right, ${colors.primary}, ${colors.accent})`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                     Trends Today
                   </span>
                 </h1>
-                <p className="text-xl text-white/70 mb-10 leading-relaxed">
+                <p style={{ fontSize: '1.25rem', color: 'rgba(255, 255, 255, 0.7)', lineHeight: '1.5', marginBottom: '2.5rem' }}>
                   Search, visualize, and track trends across industries with unprecedented accuracy.
                 </p>
-                <div className="space-y-3">
-                  <p className="text-white/60">Sign up for updates and beta access.</p>
-                  <div className="flex items-center space-x-6">
-                    <input
-                      type="email"
-                      placeholder="Enter your email"
-                      className="px-6 py-4 bg-white/10 rounded-full border border-white/20 text-white w-full max-w-sm focus:outline-none focus:border-[#F15BB5]"
-                    />
-                    <button 
-                      className="px-8 py-4 rounded-full text-white flex items-center space-x-3 transition-all duration-300 hover:shadow-lg"
-                      style={{ 
-                        background: `linear-gradient(45deg, ${colors.primary}, ${colors.accent})`,
-                        boxShadow: `0 4px 20px ${colors.primary}40`
-                      }}
-                    >
+                <div style={{ 'spaceY': '0.75rem' }}>
+                  <p style={{ color: 'rgba(255, 255, 255, 0.6)' }}>Sign up for updates and beta access.</p>
+                  <div style={{ display: 'flex', alignItems: 'center', 'spaceX': '1.5rem' }}>
+                    <input type="email" placeholder="Enter your email" style={{ padding: '1rem 1.5rem', backgroundColor: 'rgba(255, 255, 255, 0.1)', borderRadius: '9999px', border: '1px solid rgba(255, 255, 255, 0.2)', color: 'white', width: '100%', maxWidth: '24rem', outline: 'none', transition: 'border-color 0.3s', ':focus': { borderColor: '#F15BB5' } }} />
+                    <button style={{ padding: '1rem 2rem', borderRadius: '9999px', color: 'white', display: 'flex', alignItems: 'center', 'spaceX': '0.75rem', transition: 'all 0.3s', background: `linear-gradient(45deg, ${colors.primary}, ${colors.accent})`, boxShadow: `0 4px 20px ${colors.primary}40` }}>
                       <span>Get Started</span>
-                      <ArrowRight className="w-5 h-5" />
+                      <ArrowRight style={{ width: '1.25rem', height: '1.25rem' }} />
                     </button>
                   </div>
                 </div>
@@ -150,38 +97,32 @@
           </div>
 
           {/* Features Section */}
-          <div className="py-24">
-            <div className="max-w-6xl mx-auto px-8">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div style={{ paddingTop: '6rem', paddingBottom: '6rem' }}>
+            <div style={{ maxWidth: '1536px', margin: '0 auto', padding: '2rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(1, minmax(0, 1fr))', gap: '3rem', '@screen md': { gridTemplateColumns: 'repeat(3, minmax(0, 1fr))' } }}>
                 {[
                   {
-                    icon: <Search className="w-8 h-8" />,
+                    icon: <Search style={{ width: '2rem', height: '2rem' }} />,
                     title: "Search",
                     description: "Discover the insights that matter most with Trend Spy's powerful search functionality. Whether you're exploring industry data, monitoring competitors, or tracking social media buzz, our search tools allow you to quickly filter through large datasets to find relevant trends."
                   },
                   {
-                    icon: <BarChart2 className="w-8 h-8" />,
+                    icon: <BarChart2 style={{ width: '2rem', height: '2rem' }} />,
                     title: "Track",
                     description: "Stay ahead of the curve by tracking key trends over time. With Trend Spy's tracking features, you can set up alerts and receive real-time updates on the shifts in the data that impact your business."
                   },
                   {
-                    icon: <LineChart className="w-8 h-8" />,
+                    icon: <LineChart style={{ width: '2rem', height: '2rem' }} />,
                     title: "Visualize",
                     description: "Transform raw data into meaningful insights with our advanced visualization tools. Trend Spy enables you to create clear, interactive charts, graphs, and dashboards that make complex data easy to understand."
                   }
                 ].map((feature, i) => (
-                  <div key={i} className="group">
-                    <div 
-                      className="mb-6 p-6 rounded-2xl transition-all duration-300"
-                      style={{ 
-                        backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                        border: '1px solid rgba(255, 255, 255, 0.1)'
-                      }}
-                    >
+                  <div key={i} style={{ 'group': true }}>
+                    <div style={{ marginBottom: '1.5rem', padding: '1.5rem', borderRadius: '1rem', transition: 'all 0.3s', backgroundColor: 'rgba(255, 255, 255, 0.05)', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
                       <div style={{ color: colors.accent }}>{feature.icon}</div>
                     </div>
-                    <h3 className="text-2xl font-light text-white mb-4">{feature.title}</h3>
-                    <p className="text-white/70 leading-relaxed">{feature.description}</p>
+                    <h3 style={{ fontSize: '1.5rem', fontWeight: '300', color: 'white', marginBottom: '1rem' }}>{feature.title}</h3>
+                    <p style={{ color: 'rgba(255, 255, 255, 0.7)', lineHeight: '1.5' }}>{feature.description}</p>
                   </div>
                 ))}
               </div>
@@ -189,10 +130,10 @@
           </div>
 
           {/* Testimonials */}
-          <div className="py-24 relative">
-            <div className="max-w-6xl mx-auto px-8">
-              <h2 className="text-4xl font-light text-white text-center mb-12">What Our Customers Say</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div style={{ paddingTop: '6rem', paddingBottom: '6rem', position: 'relative' }}>
+            <div style={{ maxWidth: '1536px', margin: '0 auto', padding: '2rem' }}>
+              <h2 style={{ fontSize: '2.25rem', fontWeight: '300', color: 'white', textAlign: 'center', marginBottom: '3rem' }}>What Our Customers Say</h2>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(1, minmax(0, 1fr))', gap: '2rem', '@screen md': { gridTemplateColumns: 'repeat(3, minmax(0, 1fr))' } }}>
                 {[
                   {
                     text: "Exceptional service! This company goes above and beyond to meet their customers' needs. I couldn't be happier with the results.",
@@ -207,18 +148,11 @@
                     author: "Casey Williams"
                   }
                 ].map((testimonial, i) => (
-                  <div 
-                    key={i} 
-                    className="group p-8 rounded-2xl transition-all duration-300 backdrop-blur-sm"
-                    style={{ 
-                      backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                      border: '1px solid rgba(255, 255, 255, 0.1)'
-                    }}
-                  >
-                    <p className="text-white/70 mb-6">{testimonial.text}</p>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 rounded-full" style={{ background: `linear-gradient(45deg, ${colors.primary}, ${colors.accent})` }}></div>
-                      <span className="font-light text-white">{testimonial.author}</span>
+                  <div key={i} style={{ padding: '2rem', borderRadius: '1rem', transition: 'all 0.3s', backgroundColor: 'rgba(255, 255, 255, 0.05)', border: '1px solid rgba(255, 255, 255, 0.1)', backdrop: 'blur(16px)' }}>
+                    <p style={{ color: 'rgba(255, 255, 255, 0.7)', marginBottom: '1.5rem' }}>{testimonial.text}</p>
+                    <div style={{ display: 'flex', alignItems: 'center', 'spaceX': '0.75rem' }}>
+                      <div style={{ width: '2.5rem', height: '2.5rem', borderRadius: '9999px', background: `linear-gradient(45deg, ${colors.primary}, ${colors.accent})` }}></div>
+                      <span style={{ fontWeight: '300', color: 'white' }}>{testimonial.author}</span>
                     </div>
                   </div>
                 ))}
@@ -227,25 +161,14 @@
           </div>
 
           {/* CTA Section */}
-          <div className="py-24 relative overflow-hidden">
-            <div 
-              className="absolute inset-0 opacity-20"
-              style={{ 
-                background: `linear-gradient(45deg, ${colors.primary}, ${colors.accent})`
-              }}
-            />
-            <div className="max-w-6xl mx-auto px-8 relative">
-              <div className="text-center">
-                <h2 className="text-4xl font-light text-white mb-8">
+          <div style={{ paddingTop: '6rem', paddingBottom: '6rem', position: 'relative', overflow: 'hidden' }}>
+            <div style={{ position: 'absolute', inset: '0', opacity: '0.2', background: `linear-gradient(45deg, ${colors.primary}, ${colors.accent})` }}></div>
+            <div style={{ maxWidth: '1536px', margin: '0 auto', padding: '2rem', position: 'relative' }}>
+              <div style={{ textAlign: 'center' }}>
+                <h2 style={{ fontSize: '2.25rem', fontWeight: '300', color: 'white', marginBottom: '2rem' }}>
                   Unlock the power of market insights and elevate your business today!
                 </h2>
-                <button 
-                  className="px-8 py-4 rounded-full text-white transition-all duration-300"
-                  style={{ 
-                    background: `linear-gradient(45deg, ${colors.primary}, ${colors.accent})`,
-                    boxShadow: `0 4px 20px ${colors.primary}40`
-                  }}
-                >
+                <button style={{ padding: '1rem 2rem', borderRadius: '9999px', color: 'white', transition: 'all 0.3s', background: `linear-gradient(45deg, ${colors.primary}, ${colors.accent})`, boxShadow: `0 4px 20px ${colors.primary}40` }}>
                   Get Started
                 </button>
               </div>
@@ -253,14 +176,12 @@
           </div>
 
           {/* Footer */}
-          <footer className="py-16 border-t border-white/10">
-            <div className="max-w-6xl mx-auto px-8">
-              <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-                <div className="text-white/70">© 2024 Trend Spy | All rights reserved</div>
-                <div className="flex space-x-8">
-                  <a href="#" className="text-white/70 hover:text-white transition-colors">Privacy</a>
-                  <a href="#" className="text-white/70 hover:text-white transition-colors">Terms</a>
-                </div>
+          <footer style={{ paddingTop: '4rem', paddingBottom: '4rem', borderTop: '1px solid rgba(255, 255, 255, 0.1)' }}>
+            <div style={{ maxWidth: '1536px', margin: '0 auto', padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', 'spaceY': '1rem', '@screen md': { flexDirection: 'row', justifyContent: 'space-between' } }}>
+              <div style={{ color: 'rgba(255, 255, 255, 0.7)' }}>© 2024 Trend Spy | All rights reserved</div>
+              <div style={{ display: 'flex', 'spaceX': '2rem' }}>
+                <a href="#" style={{ color: 'rgba(255, 255, 255, 0.7)', transition: 'color 0.2s', ':hover': { color: 'white' } }}>Privacy</a>
+                <a href="#" style={{ color: 'rgba(255, 255, 255, 0.7)', transition: 'color 0.2s', ':hover': { color: 'white' } }}>Terms</a>
               </div>
             </div>
           </footer>
@@ -270,5 +191,11 @@
 
     ReactDOM.createRoot(document.getElementById('root')).render(<MysticAnalytics />);
   </script>
+
+  <!-- Include the external dependencies -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
 </body>
 </html>
